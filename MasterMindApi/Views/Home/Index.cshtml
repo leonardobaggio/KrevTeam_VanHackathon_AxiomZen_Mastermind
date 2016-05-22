@@ -1,0 +1,56 @@
+﻿   <!-- Modal -->
+    <div id="User_Create" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Please, inform your nickname.</h4>
+                </div>
+                <div class="modal-body" style="margin-top:0;">
+                    @Html.Partial("~/Views/User/_Create.cshtml")
+                </div>
+
+                @*<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>*@
+            </div>
+
+        </div>
+    </div>
+   <!-- Modal -->
+<div id="Single_Multi" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content" style="position:relative;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Choose your Game!</h4>
+            </div>
+            <div class="modal-body" style="background:transparent;">
+                @Html.Partial("~/Views/Home/_PartialSingleMulti.cshtml")
+
+            </div>
+
+            @*<div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>*@
+        </div>
+
+    </div>
+</div>
+
+<script>
+    window.onload = function () {
+        userId = '@ViewBag.UserId';
+        if ('@ViewBag.UserCreated' == 'False') {
+            $('#User_Create').modal('show');
+        }
+        else if ('@ViewBag.UserCreated' == 'True') {
+            $('#Single_Multi').modal('show');
+        }
+    }
+
+</script>

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MastermindModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="MastermindEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Games" EntityType="MastermindModel.Games" />
+    <EntitySet Name="Stages" EntityType="MastermindModel.Stages" />
+    <EntitySet Name="Games_Stages" EntityType="MastermindModel.Games_Stages" />
+    <EntitySet Name="Users" EntityType="MastermindModel.Users" />
+  </EntityContainer>
+  <EntityType Name="Games">
+    <Key>
+      <PropertyRef Name="GameId" />
+    </Key>
+    <Property Name="GameId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GameSequence" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="Winner_UserId" Type="Int32" />
+    <Property Name="Player_Games_StagesId1" Type="Int32" />
+    <Property Name="Player_Games_StagesId2" Type="Int32" />
+    <Property Name="Player_Name_1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Player_Name_2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Stages">
+    <Key>
+      <PropertyRef Name="StageId" />
+    </Key>
+    <Property Name="StageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PlayerSequence" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="StageCheck" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="IsMatch" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="GameId" Type="Int32" />
+    <Property Name="StageCheck2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Games_Stages">
+    <Key>
+      <PropertyRef Name="Games_StagesId" />
+    </Key>
+    <Property Name="Games_StagesId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GameId" Type="Int32" />
+    <Property Name="StageId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="IsWaitChallenger" Type="Boolean" />
+  </EntityType>
+</Schema>

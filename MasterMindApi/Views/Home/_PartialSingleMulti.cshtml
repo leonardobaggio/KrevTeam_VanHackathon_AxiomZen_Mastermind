@@ -1,0 +1,250 @@
+﻿<style type="text/css">
+    button::-moz-focus-inner {
+        border: 0;
+    }
+
+
+
+    /* punch
+    *******************************************************************************/
+    button.punch {
+        background: #ABABD6;
+        border-top: 1px solid #38538c;
+        border-right: 1px solid #1f2d4d;
+        border-bottom: 1px solid #151e33;
+        border-left: 1px solid #1f2d4d;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 10px 1px #5c8bee, 0 1px 0 #1d2c4d, 0 6px 0 #1f3053, 0 8px 4px 1px #111111;
+        box-shadow: inset 0 1px 10px 1px #FFFFFF, 0 1px 0 #262B35, 0 6px 0 #3C7CFF, 0 8px 4px 1px #C1C1C1;
+        color: #fff;
+        font: bold 20px/1 "helvetica neue", helvetica, arial, sans-serif;
+        margin-bottom: 10px;
+        padding: 10px 0 12px 0;
+        text-align: center;
+        text-shadow: 0 -1px 1px #1e2d4d;
+        width: 150px;
+        -webkit-background-clip: padding-box;
+    }
+
+        button.punch:hover {
+            -webkit-box-shadow: inset 0 0 20px 1px #87adff, 0 1px 0 #1d2c4d, 0 6px 0 #1f3053, 0 8px 4px 1px #111111;
+            box-shadow: inset 0 0 20px 1px #87adff, 0 1px 0 #1d2c4d, 0 6px 0 #1f3053, 0 8px 4px 1px #111111;
+            cursor: pointer;
+        }
+
+        button.punch:active {
+            -webkit-box-shadow: inset 0 1px 10px 1px #5c8bee, 0 1px 0 #1d2c4d, 0 2px 0 #1f3053, 0 4px 3px 0 #111111;
+            box-shadow: inset 0 1px 10px 1px #5c8bee, 0 1px 0 #1d2c4d, 0 2px 0 #1f3053, 0 4px 3px 0 #111111;
+            margin-top: 58px;
+        }
+
+
+    /* disabled button styles
+       works with this markup: <button disabled="disabled">Submit</button>
+    *******************************************************************************/
+    button[disabled],
+    button[disabled]:hover,
+    button[disabled]:active {
+        background: #999;
+        border: 0;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        color: #aaa;
+        cursor: not-allowed;
+        text-shadow: none;
+    }
+
+    /* Style the example page.
+    ******************************************************************************/
+    /* Global Reset
+    ------------------------------------------------------------------------------*/
+    /* http://meyerweb.com/eric/tools/css/reset/
+       v2.0 | 20110126
+       License: none (public domain)
+    */
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    b, u, i, center,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend, button,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, embed,
+    figure, figcaption, footer, header, hgroup,
+    menu, nav, output, ruby, section, summary,
+    time, mark, audio, video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+    }
+
+    /* HTML5 display-role reset for older browsers */
+    article, aside, details, figcaption, figure,
+    footer, header, hgroup, menu, nav, section {
+        display: block;
+    }
+
+
+
+    button.punch {
+        margin-top: 54px;
+    }
+
+
+
+    /* Clear Floated Elements
+    ------------------------------------------------------------------------------*/
+    .column:after,
+    .button-collection:after,
+    .clearfix:after,
+    div.project-info:after {
+        clear: both;
+        content: ' ';
+        display: block;
+        font-size: 0;
+        line-height: 0;
+        visibility: hidden;
+        width: 0;
+        height: 0;
+    }
+
+    .fixedElement {
+        /*position: fixed;
+                top: 0;
+                width: 200%;
+                z-index: 100;*/
+        position: fixed;
+        width: 500px;
+        height: 200px;
+        top: 50%;
+        left: 50%;
+        margin-top: -100px; /* Negative half of height. */
+        margin-left: -175px; /* Negative half of width. */
+    }
+
+    .modal-body {
+        margin-top: 50px;
+    }
+
+    #divWaiting {
+        margin-top: 63px;
+        width: auto;
+        text-align: center;
+    }
+
+        #divWaiting img {
+            width: 30px;
+        }
+
+    #defaultcursor {
+        float: left;
+    }
+</style>
+
+<div class="defaultcursor">
+
+    <div class="fixedElement">
+        <div style="float:left;margin-right:50px; padding-top:45px;">
+            <button class="punch" onclick="GoSingle()">SinglePlayer</button>
+        </div>
+        <div style="float:left;padding-top:45px;">
+            <button class="punch" onclick="GoMultiPlayer()">MultiPlayer</button>
+
+        </div>
+    </div>
+
+</div>
+<div id="divWaiting" style="display:none;">
+    <img src="~/Content/MnyxU.gif" />
+    <label>Wating Player...</label>
+</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    var interval = 1000;    
+    var click = false;
+
+    function GoSingle() {
+        if (click)
+            return false;
+        $("#divWaiting").hide();
+        window.location.replace("/Game/Singleplayer");
+        click = true;        
+    }
+    function GoMultiPlayer() {
+        if (click)
+            return false;
+        if (parseInt(userId) != 0) {
+            $("#divWaiting").show();
+            createNewGame();
+            click = true;
+            //setTimeout(createNewGame, interval);
+            //WaitUser
+       }
+    }
+
+    function createNewGame() {
+
+        var user = { UserId: userId, IsWaitChallenger: true };
+
+        $.ajax({
+            url: '/Api/GameApi/NewGame',
+            type: 'POST',
+            contentType: "application/json;charset=utf-8",
+            data: JSON.stringify(user),
+            success: function (data) {
+                document.getElementById('GameId').value = data.GameId;
+                //document.getElementById('Player').innerHTML += data.Player_Name_1 + '!';
+                Espera();
+            }
+            
+        });
+    }
+
+    function Espera() {
+        var user = { Player_Games_StagesId1: userId, GameId: document.getElementById('GameId').value };
+        $.ajax({
+            url: '/Api/GameApi/WaitUser',
+            type: 'POST',
+            contentType: "application/json;charset=utf-8",
+            data: JSON.stringify(user),
+            success: function (data) {
+                if (!data) {
+                    window.location.replace("/Game/Multiplayer/" + document.getElementById('GameId').value);
+                }
+            },
+            complete: function (data) {
+                setTimeout(Espera, interval);
+            }
+
+        });
+    }
+
+
+    //function findUser (){
+    //    var user = { Player_Games_StagesId1: userId };
+    //    $.ajax({
+    //        url: 'Api/GameApi/WaitUser',
+    //        type: 'POST',
+    //        contentType: "application/json;charset=utf-8",
+    //        data: JSON.stringify(user),
+    //        success: function (data) {
+    //            if (data != 0) {
+    //                window.location.replace("/Game/Multiplayer/" + data);
+    //            }                       
+    //        },
+    //        complete: function(data)
+    //        {
+    //            setTimeout(findUser, interval);
+    //        }
+
+    //    });
+    //  }
+    
+
+</script>
+<input hidden="hidden" id="GameId" />

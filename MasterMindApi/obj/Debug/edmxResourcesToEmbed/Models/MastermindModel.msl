@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MastermindModelStoreContainer" CdmEntityContainer="MastermindEntities">
+    <EntitySetMapping Name="Games">
+      <EntityTypeMapping TypeName="MastermindModel.Games">
+        <MappingFragment StoreEntitySet="Games">
+          <ScalarProperty Name="Player_Name_2" ColumnName="Player_Name_2" />
+          <ScalarProperty Name="Player_Name_1" ColumnName="Player_Name_1" />
+          <ScalarProperty Name="Player_Games_StagesId2" ColumnName="Player_Games_StagesId2" />
+          <ScalarProperty Name="Player_Games_StagesId1" ColumnName="Player_Games_StagesId1" />
+          <ScalarProperty Name="Winner_UserId" ColumnName="Winner_UserId" />
+          <ScalarProperty Name="GameSequence" ColumnName="GameSequence" />
+          <ScalarProperty Name="GameId" ColumnName="GameId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stages">
+      <EntityTypeMapping TypeName="MastermindModel.Stages">
+        <MappingFragment StoreEntitySet="Stages">
+          <ScalarProperty Name="StageCheck2" ColumnName="StageCheck2" />
+          <ScalarProperty Name="GameId" ColumnName="GameId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="IsMatch" ColumnName="IsMatch" />
+          <ScalarProperty Name="StageCheck" ColumnName="StageCheck" />
+          <ScalarProperty Name="PlayerSequence" ColumnName="PlayerSequence" />
+          <ScalarProperty Name="StageId" ColumnName="StageId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Games_Stages">
+      <EntityTypeMapping TypeName="MastermindModel.Games_Stages">
+        <MappingFragment StoreEntitySet="Games_Stages">
+          <ScalarProperty Name="StageId" ColumnName="StageId" />
+          <ScalarProperty Name="GameId" ColumnName="GameId" />
+          <ScalarProperty Name="Games_StagesId" ColumnName="Games_StagesId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="MastermindModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="IsWaitChallenger" ColumnName="IsWaitChallenger" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

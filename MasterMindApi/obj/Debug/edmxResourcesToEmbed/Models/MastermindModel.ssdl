@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MastermindModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Games">
+    <Key>
+      <PropertyRef Name="GameId" />
+    </Key>
+    <Property Name="GameId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameSequence" Type="varchar" MaxLength="8" />
+    <Property Name="Player_Games_StagesId1" Type="int" />
+    <Property Name="Player_Games_StagesId2" Type="int" />
+    <Property Name="Winner_UserId" Type="int" />
+    <Property Name="Player_Name_1" Type="varchar" MaxLength="100" />
+    <Property Name="Player_Name_2" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Games_Stages">
+    <Key>
+      <PropertyRef Name="Games_StagesId" />
+    </Key>
+    <Property Name="Games_StagesId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameId" Type="int" />
+    <Property Name="StageId" Type="int" />
+  </EntityType>
+  <EntityType Name="Stages">
+    <Key>
+      <PropertyRef Name="StageId" />
+    </Key>
+    <Property Name="StageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PlayerSequence" Type="varchar" MaxLength="8" />
+    <Property Name="StageCheck" Type="varchar" MaxLength="10" />
+    <Property Name="IsMatch" Type="int" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="GameId" Type="int" />
+    <Property Name="StageCheck2" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="255" />
+    <Property Name="IsWaitChallenger" Type="bit" />
+  </EntityType>
+  <EntityContainer Name="MastermindModelStoreContainer">
+    <EntitySet Name="Games" EntityType="Self.Games" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Games_Stages" EntityType="Self.Games_Stages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Stages" EntityType="Self.Stages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

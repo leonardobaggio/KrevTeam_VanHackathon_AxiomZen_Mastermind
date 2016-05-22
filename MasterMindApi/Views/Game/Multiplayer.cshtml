@@ -1,0 +1,207 @@
+﻿<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<script>
+    var interval = 1000;
+    var Waitstage;
+    $(document).ready(function () {
+        userId = '@ViewBag.UserId';
+        document.getElementById("GameId").value = '@ViewBag.GameId';
+        document.getElementById('Player').innerHTML += '@ViewBag.Player1' + ' versus ' + '@ViewBag.Player2';
+    });
+
+    function createWaitPlay() {
+        //var stage = { UserId: $('#UserId').val(), GameId: $('#GameId').val() };
+        var stage = { UserId: userId, GameId: document.getElementById("GameId").value };
+
+        $.ajax({
+            url: '/Api/Stage/WaitPlay',
+            type: 'POST',
+            contentType: "application/json;charset=utf-8",
+            data: JSON.stringify(stage),
+            success: function (data) {
+
+            }
+        });
+
+    }
+
+    function createPlay() {
+
+        //document.getElementById("table-data").getElementsByTagName("tr").length
+        if ($('.circle.gray').length != 0) {
+            alert('Please select color on gray circles');
+        }
+
+        var cores = document.getElementsByClassName("Colors")[0].getElementsByTagName("div");
+        var sequencia = document.getElementsByClassName("stage tr_clone")[0].getElementsByTagName("div");
+
+        var sequenciaJogador = "";
+
+        for (var i = 0; i <= 8; i++) {
+            if (sequencia[i].className.indexOf("circle") >= 0)
+            for (var j = 0; j <= 8; j++) {
+                if (sequencia[i].className == cores[j].className) {
+                    sequenciaJogador += j.toString();
+                    break;
+                }
+            }
+        }
+
+        //var stage = { PlayerSequence: $('#PlayerSequence').val(), UserId: $('#UserId').val(), GameId: $('#GameId').val() };
+        var stage = { PlayerSequence: sequenciaJogador, UserId: userId, GameId: document.getElementById("GameId").value };
+        var a = 1;
+
+        $.ajax({
+            url: '/Api/Stage/AddPlay',
+            type: 'POST',
+            contentType: "application/json;charset=utf-8",
+            data: JSON.stringify(stage),
+            success: function (data) {
+                Waitstage = data;
+                alert("Wait For the Next Player");
+                WaitNextPlay();
+            }
+        });
+
+    }
+
+
+    function WaitNextPlay() {
+
+        $.ajax({
+            url: '/Api/Stage/WaitPlay',
+            type: 'POST',
+            contentType: "application/json;charset=utf-8",
+            data: JSON.stringify(Waitstage),
+            success: function (data) {
+                if (data.StageCheck2.length > 0) {
+                    check_pegs(data.StageCheck, data.StageCheck2);
+                    if (data.IsMatch == 1 &&
+                        data.StageCheck2.substring(0, 1) == "8") {
+                        alert("Draw");
+                        window.location.replace("/Home/Index");
+                    } else if (data.IsMatch == 1) {
+                        alert("You Won");
+                        window.location.replace("/Home/Index");
+                    } else if (data.StageCheck2.substring(0, 1) == "8") {
+                        alert("You Lost");
+                        window.location.replace("/Home/Index");
+                    } else {
+                        AddStage();
+                    }
+                    clearTimeout(WaitNextPlay);
+                } else {
+                    setTimeout(WaitNextPlay, interval);
+                }
+            }
+
+        });
+    }
+
+    function check_pegs(result, result2) {
+        var resultado = document.getElementsByClassName("stage tr_clone")[0].getElementsByClassName("GameResult")[0].getElementsByTagName("div");
+
+        var i = 0;
+
+        var ok = result.substring(0,1);
+        var close = result.substring(1,2);
+
+        while (ok > 0) {
+            resultado[i].className = "circle-lt black";
+            i++;
+            ok--;
+        }
+        while(close > 0){
+            resultado[i].className = "circle-lt white";
+            i++;
+            close--;
+        }
+
+        var resultado = document.getElementsByClassName("stage tr_clone")[0].getElementsByClassName("GameResult2")[0].getElementsByTagName("div");
+
+        var i = 0;
+
+        var ok = result2.substring(0, 1);
+        var close = result2.substring(1, 2);
+
+        while (ok > 0) {
+            resultado[i].className = "circle-lt black";
+            i++;
+            ok--;
+        }
+        while (close > 0) {
+            resultado[i].className = "circle-lt white";
+            i++;
+            close--;
+        }
+
+    }
+</script>
+<input hidden="hidden" id="GameId" />
+
+<div class="defaultcursor">
+    <div id="Game" style="width:800px; margin:0 auto;">
+        <div id="Player" class="TitleCheck" style="width:771px;font-family:Arial; font-size:medium; color:white;float:left !important;">Multiplayers </div>
+        <br />
+        <table id="table-data" cellpadding="2" style="float:left;">
+            <tbody>
+                <tr class="Colors">
+                    <td><div>Colors</div></td>
+                    <td><div class="circle red"></div></td>
+                    <td><div class="circle green"></div></td>
+                    <td><div class="circle blue"></div></td>
+                    <td><div class="circle black"></div></td>
+                    <td><div class="circle orange"></div></td>
+                    <td><div class="circle pink"></div></td>
+                    <td><div class="circle lemon"></div></td>
+                    <td><div class="circle white"></div></td>
+                </tr>
+                <tr id="1" class="stage tr_clone">
+                    <td><div>Stage 1</div></td>
+                    <td><div class="circle gray"></div></td>
+                    <td><div class="circle gray"></div></td>
+                    <td><div class="circle gray"></div></td>
+                    <td><div class="circle gray"></div></td>
+                    <td><div class="circle gray"></div></td>
+                    <td><div class="circle gray"></div></td>
+                    <td><div class="circle gray"></div></td>
+                    <td><div class="circle gray"></div></td>
+                    <td class="GameResult">
+                        <table cellpadding="2">
+                            <tr>
+                                <td><div class="circle-lt gray"></div></td>
+                                <td><div class="circle-lt gray"></div></td>
+                                <td><div class="circle-lt gray"></div></td>
+                                <td><div class="circle-lt gray"></div></td>
+                            </tr>
+                            <tr>
+                                <td><div class="circle-lt gray"></div></td>
+                                <td><div class="circle-lt gray"></div></td>
+                                <td><div class="circle-lt gray"></div></td>
+                                <td><div class="circle-lt gray"></div></td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <input id="checkButton" type="button" value="Check" class="1 addButton tr_clone_add buttonCheck" style="float:left;" />
+                    </td>
+                    <td class="GameResult2">
+                        <table cellpadding="2">
+                            <tr>
+                                <td><div class="circle-lt gray"></div></td>
+                                <td><div class="circle-lt gray"></div></td>
+                                <td><div class="circle-lt gray"></div></td>
+                                <td><div class="circle-lt gray"></div></td>
+                            </tr>
+                            <tr>
+                                <td><div class="circle-lt gray"></div></td>
+                                <td><div class="circle-lt gray"></div></td>
+                                <td><div class="circle-lt gray"></div></td>
+                                <td><div class="circle-lt gray"></div></td>
+                            </tr>
+                        </table>
+                    </td>
+        </table>
+
+    </div>
+</div>

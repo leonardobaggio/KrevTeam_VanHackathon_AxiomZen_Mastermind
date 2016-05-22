@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MastermindModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Games">
+          <Key>
+            <PropertyRef Name="GameId" />
+          </Key>
+          <Property Name="GameId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GameSequence" Type="varchar" MaxLength="8" />
+          <Property Name="Player_Games_StagesId1" Type="int" />
+          <Property Name="Player_Games_StagesId2" Type="int" />
+          <Property Name="Winner_UserId" Type="int" />
+          <Property Name="Player_Name_1" Type="varchar" MaxLength="100" />
+          <Property Name="Player_Name_2" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Games_Stages">
+          <Key>
+            <PropertyRef Name="Games_StagesId" />
+          </Key>
+          <Property Name="Games_StagesId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GameId" Type="int" />
+          <Property Name="StageId" Type="int" />
+        </EntityType>
+        <EntityType Name="Stages">
+          <Key>
+            <PropertyRef Name="StageId" />
+          </Key>
+          <Property Name="StageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlayerSequence" Type="varchar" MaxLength="8" />
+          <Property Name="StageCheck" Type="varchar" MaxLength="10" />
+          <Property Name="IsMatch" Type="int" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="GameId" Type="int" />
+          <Property Name="StageCheck2" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="255" />
+          <Property Name="IsWaitChallenger" Type="bit" />
+        </EntityType>
+        <EntityContainer Name="MastermindModelStoreContainer">
+          <EntitySet Name="Games" EntityType="Self.Games" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Games_Stages" EntityType="Self.Games_Stages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stages" EntityType="Self.Stages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MastermindModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MastermindEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Games" EntityType="MastermindModel.Games" />
+          <EntitySet Name="Stages" EntityType="MastermindModel.Stages" />
+          <EntitySet Name="Games_Stages" EntityType="MastermindModel.Games_Stages" />
+          <EntitySet Name="Users" EntityType="MastermindModel.Users" />
+        </EntityContainer>
+        <EntityType Name="Games">
+          <Key>
+            <PropertyRef Name="GameId" />
+          </Key>
+          <Property Name="GameId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GameSequence" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="Winner_UserId" Type="Int32" />
+          <Property Name="Player_Games_StagesId1" Type="Int32" />
+          <Property Name="Player_Games_StagesId2" Type="Int32" />
+          <Property Name="Player_Name_1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Player_Name_2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Stages">
+          <Key>
+            <PropertyRef Name="StageId" />
+          </Key>
+          <Property Name="StageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlayerSequence" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="StageCheck" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IsMatch" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="GameId" Type="Int32" />
+          <Property Name="StageCheck2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Games_Stages">
+          <Key>
+            <PropertyRef Name="Games_StagesId" />
+          </Key>
+          <Property Name="Games_StagesId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GameId" Type="Int32" />
+          <Property Name="StageId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="IsWaitChallenger" Type="Boolean" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MastermindModelStoreContainer" CdmEntityContainer="MastermindEntities">
+          <EntitySetMapping Name="Games">
+            <EntityTypeMapping TypeName="MastermindModel.Games">
+              <MappingFragment StoreEntitySet="Games">
+                <ScalarProperty Name="Player_Name_2" ColumnName="Player_Name_2" />
+                <ScalarProperty Name="Player_Name_1" ColumnName="Player_Name_1" />
+                <ScalarProperty Name="Player_Games_StagesId2" ColumnName="Player_Games_StagesId2" />
+                <ScalarProperty Name="Player_Games_StagesId1" ColumnName="Player_Games_StagesId1" />
+                <ScalarProperty Name="Winner_UserId" ColumnName="Winner_UserId" />
+                <ScalarProperty Name="GameSequence" ColumnName="GameSequence" />
+                <ScalarProperty Name="GameId" ColumnName="GameId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stages">
+            <EntityTypeMapping TypeName="MastermindModel.Stages">
+              <MappingFragment StoreEntitySet="Stages">
+                <ScalarProperty Name="StageCheck2" ColumnName="StageCheck2" />
+                <ScalarProperty Name="GameId" ColumnName="GameId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IsMatch" ColumnName="IsMatch" />
+                <ScalarProperty Name="StageCheck" ColumnName="StageCheck" />
+                <ScalarProperty Name="PlayerSequence" ColumnName="PlayerSequence" />
+                <ScalarProperty Name="StageId" ColumnName="StageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Games_Stages">
+            <EntityTypeMapping TypeName="MastermindModel.Games_Stages">
+              <MappingFragment StoreEntitySet="Games_Stages">
+                <ScalarProperty Name="StageId" ColumnName="StageId" />
+                <ScalarProperty Name="GameId" ColumnName="GameId" />
+                <ScalarProperty Name="Games_StagesId" ColumnName="Games_StagesId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="MastermindModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="IsWaitChallenger" ColumnName="IsWaitChallenger" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

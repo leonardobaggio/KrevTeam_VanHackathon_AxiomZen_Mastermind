@@ -1,0 +1,298 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Game</title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/site.css" rel="stylesheet" />
+    <style type="text/css">
+        body {
+            padding: 0px;
+            /*background: url('http://i.stack.imgur.com/jGlzr.png') no-repeat 0 0 scroll;*/
+        }
+
+        #Game {
+            width: 800px;
+            height: 900px;
+            background-color: brown;
+            border-width: 15px;
+            border-style: solid;
+            border-color: #2B2929 #4B4242;
+        }
+
+        .img-circle {
+            width: 40px;
+            text-align: center;
+            height: 40px;
+        }
+
+        .gray {
+            background-color: gray;
+        }
+
+        .red {
+            background: rgba(169,3,41,1);
+            background: -moz-linear-gradient(left, rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(109,0,25,1) 100%);
+            background: -webkit-gradient(left top, right top, color-stop(0%, rgba(169,3,41,1)), color-stop(44%, rgba(143,2,34,1)), color-stop(100%, rgba(109,0,25,1)));
+            background: -webkit-linear-gradient(left, rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(109,0,25,1) 100%);
+            background: -o-linear-gradient(left, rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(109,0,25,1) 100%);
+            background: -ms-linear-gradient(left, rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(109,0,25,1) 100%);
+            background: linear-gradient(to right, rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(109,0,25,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019', GradientType=1 );
+        }
+
+        .lemon {
+            background: rgba(210,255,82,1);
+            background: -moz-linear-gradient(left, rgba(210,255,82,1) 0%, rgba(145,232,66,1) 100%);
+            background: -webkit-gradient(left top, right top, color-stop(0%, rgba(210,255,82,1)), color-stop(100%, rgba(145,232,66,1)));
+            background: -webkit-linear-gradient(left, rgba(210,255,82,1) 0%, rgba(145,232,66,1) 100%);
+            background: -o-linear-gradient(left, rgba(210,255,82,1) 0%, rgba(145,232,66,1) 100%);
+            background: -ms-linear-gradient(left, rgba(210,255,82,1) 0%, rgba(145,232,66,1) 100%);
+            background: linear-gradient(to right, rgba(210,255,82,1) 0%, rgba(145,232,66,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2ff52', endColorstr='#91e842', GradientType=1 );
+        }
+
+        .green {
+            background: rgba(98,125,77,1);
+            background: -moz-radial-gradient(center, ellipse cover, rgba(98,125,77,1) 0%, rgba(31,59,8,1) 100%);
+            background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(98,125,77,1)), color-stop(100%, rgba(31,59,8,1)));
+            background: -webkit-radial-gradient(center, ellipse cover, rgba(98,125,77,1) 0%, rgba(31,59,8,1) 100%);
+            background: -o-radial-gradient(center, ellipse cover, rgba(98,125,77,1) 0%, rgba(31,59,8,1) 100%);
+            background: -ms-radial-gradient(center, ellipse cover, rgba(98,125,77,1) 0%, rgba(31,59,8,1) 100%);
+            background: radial-gradient(ellipse at center, rgba(98,125,77,1) 0%, rgba(31,59,8,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#627d4d', endColorstr='#1f3b08', GradientType=1 );
+        }
+
+        .blue {
+            background: rgba(179,220,237,1);
+            background: -moz-linear-gradient(left, rgba(179,220,237,1) 0%, rgba(41,184,229,1) 50%, rgba(188,224,238,1) 100%);
+            background: -webkit-gradient(left top, right top, color-stop(0%, rgba(179,220,237,1)), color-stop(50%, rgba(41,184,229,1)), color-stop(100%, rgba(188,224,238,1)));
+            background: -webkit-linear-gradient(left, rgba(179,220,237,1) 0%, rgba(41,184,229,1) 50%, rgba(188,224,238,1) 100%);
+            background: -o-linear-gradient(left, rgba(179,220,237,1) 0%, rgba(41,184,229,1) 50%, rgba(188,224,238,1) 100%);
+            background: -ms-linear-gradient(left, rgba(179,220,237,1) 0%, rgba(41,184,229,1) 50%, rgba(188,224,238,1) 100%);
+            background: linear-gradient(to right, rgba(179,220,237,1) 0%, rgba(41,184,229,1) 50%, rgba(188,224,238,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3dced', endColorstr='#bce0ee', GradientType=1 );
+        }
+
+        .pink {
+            background: rgba(255,0,132,1);
+            background: -moz-linear-gradient(left, rgba(255,0,132,1) 0%, rgba(255,0,132,1) 100%);
+            background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,0,132,1)), color-stop(100%, rgba(255,0,132,1)));
+            background: -webkit-linear-gradient(left, rgba(255,0,132,1) 0%, rgba(255,0,132,1) 100%);
+            background: -o-linear-gradient(left, rgba(255,0,132,1) 0%, rgba(255,0,132,1) 100%);
+            background: -ms-linear-gradient(left, rgba(255,0,132,1) 0%, rgba(255,0,132,1) 100%);
+            background: linear-gradient(to right, rgba(255,0,132,1) 0%, rgba(255,0,132,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff0084', endColorstr='#ff0084', GradientType=1 );
+        }
+
+        .orange {
+            background: rgba(241,231,103,1);
+            background: -moz-linear-gradient(left, rgba(241,231,103,1) 0%, rgba(254,182,69,1) 100%);
+            background: -webkit-gradient(left top, right top, color-stop(0%, rgba(241,231,103,1)), color-stop(100%, rgba(254,182,69,1)));
+            background: -webkit-linear-gradient(left, rgba(241,231,103,1) 0%, rgba(254,182,69,1) 100%);
+            background: -o-linear-gradient(left, rgba(241,231,103,1) 0%, rgba(254,182,69,1) 100%);
+            background: -ms-linear-gradient(left, rgba(241,231,103,1) 0%, rgba(254,182,69,1) 100%);
+            background: linear-gradient(to right, rgba(241,231,103,1) 0%, rgba(254,182,69,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1e767', endColorstr='#feb645', GradientType=1 );
+        }
+
+        .black {
+            background: rgba(76,76,76,1);
+            background: -moz-linear-gradient(left, rgba(76,76,76,1) 0%, rgba(44,44,44,1) 0%, rgba(71,71,71,1) 0%, rgba(89,89,89,1) 12%, rgba(102,102,102,1) 25%, rgba(43,43,43,1) 76%, rgba(28,28,28,1) 91%, rgba(19,19,19,1) 100%);
+            background: -webkit-gradient(left top, right top, color-stop(0%, rgba(76,76,76,1)), color-stop(0%, rgba(44,44,44,1)), color-stop(0%, rgba(71,71,71,1)), color-stop(12%, rgba(89,89,89,1)), color-stop(25%, rgba(102,102,102,1)), color-stop(76%, rgba(43,43,43,1)), color-stop(91%, rgba(28,28,28,1)), color-stop(100%, rgba(19,19,19,1)));
+            background: -webkit-linear-gradient(left, rgba(76,76,76,1) 0%, rgba(44,44,44,1) 0%, rgba(71,71,71,1) 0%, rgba(89,89,89,1) 12%, rgba(102,102,102,1) 25%, rgba(43,43,43,1) 76%, rgba(28,28,28,1) 91%, rgba(19,19,19,1) 100%);
+            background: -o-linear-gradient(left, rgba(76,76,76,1) 0%, rgba(44,44,44,1) 0%, rgba(71,71,71,1) 0%, rgba(89,89,89,1) 12%, rgba(102,102,102,1) 25%, rgba(43,43,43,1) 76%, rgba(28,28,28,1) 91%, rgba(19,19,19,1) 100%);
+            background: -ms-linear-gradient(left, rgba(76,76,76,1) 0%, rgba(44,44,44,1) 0%, rgba(71,71,71,1) 0%, rgba(89,89,89,1) 12%, rgba(102,102,102,1) 25%, rgba(43,43,43,1) 76%, rgba(28,28,28,1) 91%, rgba(19,19,19,1) 100%);
+            background: linear-gradient(to right, rgba(76,76,76,1) 0%, rgba(44,44,44,1) 0%, rgba(71,71,71,1) 0%, rgba(89,89,89,1) 12%, rgba(102,102,102,1) 25%, rgba(43,43,43,1) 76%, rgba(28,28,28,1) 91%, rgba(19,19,19,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#131313', GradientType=1 );
+        }
+
+        .white {
+            background: rgba(255,255,255,1);
+            background: -moz-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+            background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(246,246,246,1)), color-stop(100%, rgba(237,237,237,1)));
+            background: -webkit-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+            background: -o-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+            background: -ms-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+            background: radial-gradient(ellipse at center, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=1 );
+        }
+
+        .circle {
+            width: 15px;
+            height: 15px;
+            -moz-border-radius: 50px;
+            -webkit-border-radius: 50px;
+            border-radius: 50px;
+            padding: 15px;
+        }
+
+        .circle-lt {
+            width: 5px;
+            height: 5px;
+            -moz-border-radius: 50px;
+            -webkit-border-radius: 50px;
+            border-radius: 50px;
+            padding: 5px;
+        }
+
+        table tr {
+            padding: 20px;
+        }
+
+        .stage td div {
+            color: white;
+        }
+
+        .Colors td div {
+            color: white;
+        }
+
+        .imgred {
+            cursor: url(red.png), auto;
+        }
+
+        .imglemon {
+            cursor: url(lemon.png), auto;
+        }
+
+        .imgpink {
+            cursor: url(pink.png), auto;
+        }
+
+        .imgorange {
+            cursor: url(orange.png), auto;
+        }
+
+        .imgblue {
+            cursor: url(blue.png), auto;
+        }
+
+        .imgblack {
+            cursor: url(black.png), auto;
+        }
+
+        .imgwhite {
+            cursor: url(white.png), auto;
+        }
+
+        .imggreen {
+            cursor: url(green.png), auto;
+        }
+
+        .defaultcursor {
+            cursor: auto;
+        }
+    </style>
+</head>
+<body class="defaultcursor">
+    <div id="Game" style="width:800px; margin:0 auto;">
+        <table id="table-data" cellpadding="2" style="float:left;">
+            <tbody>
+                <tr class="Colors">
+                    <td><div>Colors</div></td>
+                    <td><div class="circle red"></div></td>
+                    <td><div class="circle green"></div></td>
+                    <td><div class="circle blue"></div></td>
+                    <td><div class="circle black"></div></td>
+                    <td><div class="circle orange"></div></td>
+                    <td><div class="circle pink"></div></td>
+                    <td><div class="circle lemon"></div></td>
+                    <td><div class="circle white"></div></td>
+                </tr>
+                <tr id="1" class="stage tr_clone">
+                    <td><div>Stage 1</div></td>
+                    <td><div class="circle gray"></div></td>
+                    <td><div class="circle gray"></div></td>
+                    <td><div class="circle gray"></div></td>
+                    <td><div class="circle gray"></div></td>
+                    <td><div class="circle gray"></div></td>
+                    <td><div class="circle gray"></div></td>
+                    <td><div class="circle gray"></div></td>
+                    <td><div class="circle gray"></div></td>
+                    <td class="GameResult">
+                        <table cellpadding="2">
+                            <tr>
+                                <td><div class="circle-lt gray"></div></td>
+                                <td><div class="circle-lt gray"></div></td>
+                                <td><div class="circle-lt gray"></div></td>
+                                <td><div class="circle-lt gray"></div></td>
+                            </tr>
+                            <tr>
+                                <td><div class="circle-lt gray"></div></td>
+                                <td><div class="circle-lt gray"></div></td>
+                                <td><div class="circle-lt gray"></div></td>
+                                <td><div class="circle-lt gray"></div></td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <input id="checkButton" type="button" value="Check" class="1 addButton tr_clone_add" style="float:left;" />
+                    </td>
+        </table>
+
+    </div>
+
+
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/respond.js"></script>
+    <script src="~/Scripts/user.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $(".Colors td div.circle").click(selectColor);
+            $(".circle").click(setColor);
+            $("input.tr_clone_add").click(AddStage);
+
+            $(document).keyup(function (e) {
+                if (e.keyCode == 27) {
+                    $('body').attr("class", "defaultcursor");
+                }
+            });
+        });
+
+        
+        function AddStage() {
+            var stageNumber = $("input.tr_clone_add").attr("class").split(" ")[0];
+            stageNumber = parseInt(stageNumber) + 1;
+
+            var $tr = $(this).closest('.tr_clone');
+            var $clone = $tr.clone();
+            $clone.attr("id", stageNumber);
+            $clone.find("td:first").text("Stage " + stageNumber);
+            $clone.find("input.tr_clone_add").attr("id", stageNumber);
+            $clone.find("input.tr_clone_add").attr("class", stageNumber + " tr_clone_add");
+            $clone.find(':text').val('');
+            $tr.before($clone);
+            //$clone.find("input.tr_clone_add").click();
+        }
+
+        function setColor(ev) {
+            var colorSelected = $('body').attr("color");
+            $(ev.toElement).attr("class", "circle " + colorSelected);
+        }
+        function selectColor(ev) {
+            var color = $(ev).attr("class");
+            color = $(ev.toElement).attr("class").split(" ")[1];
+            var image = "img" + color;
+            $('body').attr("class", image);
+            $('body').attr("color", color);
+
+
+        }
+        function checkGame(bt) {
+            var stageNumber = $("#checkButton").attr("class");
+            stageNumber += 1;
+            $(".stageGarage tr:eq(0)").prop("id", stageNumber);
+            $(".stageDescription").text("Stage " + stageNumber)
+            var stageNumber = $("#checkButton").attr("class");
+            alert('asdsa');
+        }
+       
+
+    </script>
+</body>
+
+</html>

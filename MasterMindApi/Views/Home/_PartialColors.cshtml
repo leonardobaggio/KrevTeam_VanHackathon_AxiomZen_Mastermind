@@ -1,0 +1,78 @@
+﻿@Html.Label("teste")
+@*choose buttons area - START*@
+<div id="0" class="han" style="cursor:pointer;width: 30px; height: 30px; background-color: white;  border: solid; " valorcor="0" onclick="Choose('0')"></div>
+</br>
+<div id="1" style="cursor: pointer; width: 30px; height: 30px; background-color: green; border: solid; " valorcor="1" onclick="Choose('1')"></div>
+</br>
+<div id="2" style="cursor: pointer; width: 30px; height: 30px; background-color: blue; border: solid; " valorcor="2" onclick="Choose('2')"></div>
+</br>
+<div id="3" style="cursor: pointer; width: 30px; height: 30px; background-color: black; border: solid; " valorcor="3" onclick="Choose('3')"></div>
+</br>
+<div id="4" style="cursor: pointer; width: 30px; height: 30px; background-color: red; border: solid; " valorcor="4" onclick="Choose('4')"></div>
+</br>
+<div id="5" style="cursor: pointer; width: 30px; height: 30px; background-color: orange; border: solid; " valorcor="5" onclick="Choose('5')"></div>
+</br>
+<div id="6" style="cursor: pointer; width: 30px; height: 30px; background-color:pink; border: solid; " valorcor="6" onclick="Choose('6')"></div>
+</br>
+<div id="7" style="cursor: pointer; width: 30px; height: 30px; background-color: yellow; border: solid; " valorcor="7" onclick="Choose('7')"></div>
+</br>
+
+<div id="Reset" style="cursor: pointer; width: 50px; height: 30px; background-color:aliceblue; border: solid; "  onclick="Remove()" title="Reset"></div>
+
+@*choose buttons area - END*@
+
+@*Sequence choosed area - START*@
+
+<div id="choosed0" class="choosed" style="background-color: gray; width: 30px; height: 30px; border: solid; float: left; " valorcor="0" ></div>
+
+<div id="choosed1" class="choosed" style="background-color: gray; width: 30px; height: 30px; border: solid; float: left; " valorcor="1" ></div>
+
+<div id="choosed2" class="choosed" style="background-color: gray; width: 30px; height: 30px; border: solid; float: left;" valorcor="2" ></div>
+
+<div id="choosed3" class="choosed" style="background-color: gray; width: 30px; height: 30px; border: solid; float: left;" valorcor="3" ></div>
+
+<div id="choosed4" class="choosed" style="background-color: gray; width: 30px; height: 30px; border: solid; float: left;" valorcor="4" ></div>
+
+<div id="choosed5" class="choosed" style="background-color: gray; width: 30px; height: 30px; border: solid; float: left;" valorcor="5" ></div>
+
+<div id="choosed6" class="choosed" style="background-color: gray; width: 30px; height: 30px; border: solid; float: left;" valorcor="6" ></div>
+
+<div id="choosed7" class="choosed" style="background-color: gray; width: 30px; height: 30px; border: solid; float: left;" valorcor="7"></div>
+
+
+
+@*Sequence choosed area - END*@
+
+
+@*scripts area - START:all scripts jquery and javascript after this please*@
+<script>
+    var arrColorsPicked = [-1,-1,-1,-1,-1,-1,-1,-1];
+    function Choose(numberElement)
+    {
+        debugger;
+        
+        var div = document.getElementById(numberElement).style.backgroundColor;
+
+        
+        for (var i = 0; arrColorsPicked.length; i++)
+        {
+            if (arrColorsPicked[i] == -1)
+            {
+                arrColorsPicked[i] = numberElement;
+                document.getElementById("choosed"+i).style.backgroundColor = document.getElementById(numberElement).style.backgroundColor;
+                break;
+            }
+        }
+
+    }
+    function Remove()
+    {
+        for(var i = 0; i < arrColorsPicked.length;i++){
+            document.getElementById('choosed' + i).style.backgroundColor = 'gray';
+            arrColorsPicked[i] = -1;
+        }
+    }
+
+</script>
+@*scripts area - END:all scripts jquery and javascript after this please*@
+

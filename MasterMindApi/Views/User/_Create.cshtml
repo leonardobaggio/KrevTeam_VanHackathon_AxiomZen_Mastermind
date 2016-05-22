@@ -1,0 +1,28 @@
+﻿@model MasterMindApi.Models.Users
+
+@using (Html.BeginForm())
+{
+
+<div id="User">
+    <div class="form-inline">
+        <div class="form-group">      
+                @Html.TextBoxFor(model => model.UserName, new {@class = "form-control" })   
+                           
+         
+        </div>
+        <input type="submit" value="Login" class="btn btn-bold" id="btnCreateUser" onclick="if (!ValidateBtnCreate()) { return false; }" />  
+
+      
+    </div>
+</div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    
+}
+<script>
+    function ValidateBtnCreate() {
+        return $('#UserName').val().toString().trim() != '';
+    }
+</script>
