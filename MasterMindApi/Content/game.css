@@ -347,35 +347,35 @@
         }
 
         .imgred {
-            cursor: url(../Content/pointerRed.png), auto;
+            cursor: url(../Content/pointerRed.png) 15 15, auto;
         }
 
         .imglemon {
-            cursor: url(../Content/pointerLemon.png), auto;
+            cursor: url(../Content/pointerLemon.png) 15 15, auto;
         }
 
         .imgpink {
-            cursor: url(../Content/pointerPink.png), auto;
+            cursor: url(../Content/pointerPink.png) 15 15, auto;
         }
 
         .imgorange {
-            cursor: url(../Content/pointerOrange.png), auto;
+            cursor: url(../Content/pointerOrange.png) 15 15, auto;
         }
 
         .imgblue {
-            cursor: url(../Content/pointerBlue.png), auto;
+            cursor: url(../Content/pointerBlue.png) 15 15, auto;
         }
 
         .imgblack {
-            cursor: url(../Content/pointerBlack.png), auto;
+            cursor: url(../Content/pointerBlack.png) 15 15, auto;
         }
 
         .imgwhite {
-            cursor: url(../Content/pointerWhite.png), auto;
+            cursor: url(../Content/pointerWhite.png) 15 15, auto;
         }
 
         .imggreen {
-            cursor: url(../Content/pointerGreen.png), auto;
+            cursor: url(../Content/pointerGreen.png) 15 15, auto;
         }
 
         .defaultcursor {
